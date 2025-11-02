@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎂 Feliz Cumpleaños Princesa 💖</title>
+<style>
+    body {
+        background-color: #0a0a0a;
+        color: #fff;
+        font-family: 'Comic Sans MS', cursive;
+        text-align: center;
+        overflow: hidden;
+        height: 100vh;
+        margin: 0;
+    }
+    h1 {
+        font-size: 2.5em;
+        margin-top: 20vh;
+        color: #ffb6c1;
+    }
+    p {
+        font-size: 1.2em;
+        color: #ffd6e0;
+    }
+    button {
+        margin-top: 30px;
+        padding: 15px 30px;
+        background-color: #e2398d;
+        border: none;
+        border-radius: 30px;
+        color: white;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover {
+        background-color: #ff85c2;
+        transform: scale(1.1);
+    }
+    .heart {
+        position: fixed;
+        top: -10px;
+        font-size: 24px;
+        animation: fall linear;
+        pointer-events: none;
+    }
+    @keyframes fall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* Imagen del mensaje (reducida) */
+    #fotoCumple {
+        display: block;
+        margin: 18px auto 15px;
+        width: 100px; /* 🔹 antes era 260px */
+        max-width: 100%;
+        height: auto;
+        border-radius: 18px;
+        box-shadow: 0 8px 30px rgba(226,57,141,0.25);
+        animation: latir 2.2s ease-in-out infinite;
+    }
+
+    /* Animación del latido */
+    @keyframes latir {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.06); }
+    }
+
+    /* Firma */
+    .firma {
+        font-size: 1.1em;
+        color: #ff9bcf;
+        margin-top: 10px;
+        animation: aparecer 3s ease-in-out;
+    }
+
+    /* Footer */
+    footer {
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        color: #ffb6c1;
+        font-size: 0.9em;
+        letter-spacing: 1px;
+        opacity: 0.9;
+        animation: aparecer 4s ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    footer img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ffb6c1;
+        box-shadow: 0 0 6px rgba(255,182,193,0.6);
+        transition: transform 0.3s ease;
+    }
+
+    footer img:hover {
+        transform: scale(1.1);
+    }
+
+    @keyframes aparecer {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+
+    <h1>🎉 Adivina el número secreto 🎉</h1>
+    <p>Elige un número del 1 al 5. Si aciertas, descubrirás algo especial 💖</p>
+    <input type="number" id="numero" min="1" max="5" style="padding:10px; border-radius:10px; border:none; font-size:1em;">
+    <button onclick="verificar()">Adivinar</button>
+    <h1>vamos niña, tú puedes 💪💖</h1>
+
+    <div id="mensaje"></div>
+
+<script>
+let numeroSecreto = Math.floor(Math.random() * 5) + 1;
+
+function verificar() {
+    const valor = document.getElementById("numero").value;
+    
+    if (valor == numeroSecreto) {
+        document.body.innerHTML = `
+            <h1>💖 ¡Feliz cumpleaños princesa! 💖</h1>
+            <p>Te deseo lo mejor, espero que te la pases muy bien hoy y siempre 🌸</p>
+            <p>Tqm niña bonita 💕</p>
+
+            <!-- Imagen del pastel -->
+            <img id="fotoCumple" src="img/xim.jpeg" alt="Pastel de cumpleaños">
+
+            <!-- Firma -->
+            <div class="firma">Att: 01001111 01001101 01000001 01010010 💫</div>
+
+            <!-- Footer con imagen circular -->
+            <footer>
+                <img src="img/harry.jpeg" alt="Icono circular">
+            </footer>
+        `;
+        iniciarLluvia();
+    } else {
+        alert("Ups fallaste, intenta de nuevo linda 😅");
+    }
+}
+
+function iniciarLluvia() {
+    setInterval(crearCorazon, 150);
+}
+
+function crearCorazon() {
+    const corazon = document.createElement("div");
+    corazon.classList.add("heart");
+    corazon.textContent = "💖";
+    corazon.style.left = Math.random() * 100 + "vw";
+    corazon.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(corazon);
+    setTimeout(() => corazon.remove(), 5000);
+}
+</script>
+
+</body>
+</html>
